@@ -66,6 +66,7 @@ function printProducts() {
   for (let i = 0; i < products.length; i++) {
     const product = document.createElement("li");
     product.textContent = products[i].name + " ";
+    product.classList = "productos"
 
     const btnPrice = document.createElement("button");
     btnPrice.textContent = "$" + products[i].price;
