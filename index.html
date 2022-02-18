@@ -5,14 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CoderHouse-Marcos Caitano</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+      #productos {
+        display: flex;
+        border: 1px solid green;
+        height: 100px;
+        width: fit-content;
+      }
+      #productos div{
+        border: 1px solid black;
+        margin: 4px;
+        font-size: 25px;
+        padding: 10px;
+      }
+      #productos button{
+        background-color: rgb(158, 255, 158);
+        display: flex;
+        width: 100%;
+        border-radius: 5px;
+      }
+    </style>
   </head>
   <body>
     <main>
-      <h1>Desafio 1</h1>
+      <h1>Desafio Coder</h1>
       <div id="box">
         <h3>Productos</h3>
-        <ul id="lista"></ul>
+        <div id="productos"></div>
         <h3>Total</h3>
         <div id="total"></div>
       </div>

@@ -15,6 +15,14 @@ const products = [
     name: "Harina",
     price: 50,
   },
+  {
+    name: "Jabon",
+    price: 350,
+  },
+  {
+    name: "Pan",
+    price: 150,
+  },
 ];
 
 // Precio total
@@ -64,27 +72,37 @@ function printProducts() {
    * y por cada uno crear un LI y un BUTTON
    */
   for (let i = 0; i < products.length; i++) {
-    const product = document.createElement("li");
+    const product = document.createElement("div");
     product.textContent = products[i].name + " ";
-    product.classList = "productos"
+    product.classList = "productos";
 
-    const btnPrice = document.createElement("button");
-    btnPrice.textContent = "$" + products[i].price;
-
+    const btnPriceAdd = document.createElement("button");
+    btnPriceAdd.textContent = "$" + products[i].price;
+    const btnPriceRes = document.createElement("button");
+    btnPriceRes.textContent = "$" + products[i].price;
+    btnPriceRes.style.backgroundColor= 'red'
+    btnPriceRes.style.color = 'white'
     /**
      * Asigno un EventListener al boton creado para
      * que al hacer click ejecute la funcion add
      */
-    btnPrice.addEventListener("click", add);
+    btnPriceAdd.addEventListener("click", add);
+    btnPriceRes.addEventListener("click", res);
     /**
      * Declaro la funcion add que se encarga de
      * sumar los precios cada vez que se
      * hace click en el boton
      */
+    function res() {
+      console.log(products[i].price);
+      totalPrice -= products[i].price;
+      total.textContent = "$" + totalPrice;
+    }
     function add() {
       console.log(products[i].price);
       totalPrice += products[i].price;
       total.textContent = "$" + totalPrice;
+
       /**
        * Vuelvo a llamar a la funcion para
        * mostrar el nuevo valor en el DOM
@@ -94,9 +112,11 @@ function printProducts() {
     /**
      * Agrego los elementos product y btnPrice al DOM
      */
-    document.getElementById("lista").appendChild(product);
-    document.getElementById("lista").appendChild(btnPrice);
+    document.getElementById("productos").appendChild(product);
+    product.appendChild(btnPriceAdd);
+    product.appendChild(btnPriceRes);
   }
 }
 // Llamado a la funcion para mostrar los productos
 printProducts();
+
