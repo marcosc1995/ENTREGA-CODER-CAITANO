@@ -48,9 +48,16 @@ es distinto de 0
 function changeMessege() {
   if (totalPrice == 0) {
     messege.textContent = "Porfavor compra algo...";
+  } else if (totalPrice < 0) {
+    messege.textContent = ":(";
   } else {
     messege.textContent = "Gracias!";
   }
+  // if (totalPrice == 0) {
+  //   messege.textContent = "Porfavor compra algo...";
+  // } else {
+  //   messege.textContent = "Gracias!";
+  // }
 }
 
 //llamo a la funcion
@@ -79,9 +86,9 @@ function printProducts() {
     const btnPriceAdd = document.createElement("button");
     btnPriceAdd.textContent = "$" + products[i].price;
     const btnPriceRes = document.createElement("button");
-    btnPriceRes.textContent = "$" + products[i].price;
-    btnPriceRes.style.backgroundColor= 'red'
-    btnPriceRes.style.color = 'white'
+    btnPriceRes.textContent = "-$" + products[i].price;
+    btnPriceRes.style.backgroundColor = "red";
+    btnPriceRes.style.color = "white";
     /**
      * Asigno un EventListener al boton creado para
      * que al hacer click ejecute la funcion add
@@ -97,6 +104,7 @@ function printProducts() {
       console.log(products[i].price);
       totalPrice -= products[i].price;
       total.textContent = "$" + totalPrice;
+      changeMessege();
     }
     function add() {
       console.log(products[i].price);
@@ -119,4 +127,3 @@ function printProducts() {
 }
 // Llamado a la funcion para mostrar los productos
 printProducts();
-
