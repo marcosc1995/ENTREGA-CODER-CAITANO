@@ -4,40 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CoderHouse-Marcos Caitano</title>
-    <style>
-      #productos {
-        display: flex;
-        border: 1px solid green;
-        height: 100px;
-        width: fit-content;
-        padding: 15px;
-      }
-      #productos div{
-        border: 1px solid black;
-        margin: 4px;
-        font-size: 25px;
-        padding: 10px;
-        border-radius: 5px;
-      }
-      #productos button{
-        background-color: rgb(158, 255, 158);
-        display: flex;
-        width: 100%;
-        border-radius: 5px;
-      }
-    </style>
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>WebShop</title>
   </head>
   <body>
-    <main>
-      <h1>Desafio Coder</h1>
-      <div id="box">
-        <h3>Productos</h3>
-        <div id="productos"></div>
-        <h3>Total</h3>
-        <div id="total"></div>
-      </div>
+    <header class="borde">
+      <h1>Webshop</h1>
+      <nav>
+        <button id="btnCatalogo" class="borde">Catalogo</button>
+        <button id="btnCarrito" class="borde">Carrito</button>
+      </nav>
+    </header>
+    <main class="borde">
+      <h2>Catalogo</h2>
+      <div class="borde" id="cajaCatalogo"></div>
     </main>
-    <script src="app.js"></script>
+    <div id="cajaCarrito" class="borde">
+      <h3>Carrito</h3>
+      <ul>
+        <li>producto</li>
+        <li>producto</li>
+        <li>producto</li>
+      </ul>
+      <h2>Total $ 999</h2>
+    </div>
+
+    <script src="js/main.js"></script>
   </body>
 </html>

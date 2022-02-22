@@ -1,0 +1,48 @@
+header nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.borde {
+  border: 1px solid black;
+  margin: 4px;
+  padding: 4px;
+}
+
+main {
+  min-height: 700px;
+}
+.oculto{
+    visibility: hidden;
+}
+#cajaCatalogo {
+  min-height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.tarjetaProducto {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+.tarjetaProducto button {
+  position: absolute;
+  right: 0;
+  top: 75%;
+  margin: 0;
+}
+.preImage {
+  height: 250px;
+  width: 250px;
+  background-color: grey;
+}
+
+#cajaCarrito {
+  width: 300px;
+  min-height: 500px;
+  background-color: rgba(128, 128, 128, 0.479);
+  position: absolute;
+  top: 120px;
+  right: 25px;
+  /* visibility: hidden; */
+}
