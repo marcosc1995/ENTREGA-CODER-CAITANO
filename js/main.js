@@ -39,7 +39,9 @@ function imprimirCarrito() {
     btnProducto.textContent = 'X'
     
     btnProducto.addEventListener('click', ()=>{
-      listaCarrito.removeChild(productoCarrito)
+      console.log('borrador de productos')
+      carritoPrecios.splice(i, 1)
+      imprimirCarrito()      
     })
     productoCarrito.append(btnProducto)
   }
