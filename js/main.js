@@ -4,6 +4,7 @@ const cajaCarrito = document.getElementById("cajaCarrito");
 const cajaCatalogo = document.getElementById("cajaCatalogo");
 const listaCarrito = document.getElementById("listaCarrito");
 const carritoTotal = document.getElementById("carritoTotal");
+const totalNav = document.getElementById("totalNav")
 let carritoProductos = 0;
 const carritoPrecios = [];
 
@@ -54,7 +55,8 @@ function imprimirCarrito() {
     productoCarrito.append(btnProducto);
     
   }
-  carritoTotal.textContent = ` Total $ ${carritoProductos}`
+  carritoTotal.textContent = ` Total $ ${carritoProductos}`;
+  totalNav.textContent = ` Total $ ${carritoProductos}`
 }
 
 function imprimirCatalogo() {
