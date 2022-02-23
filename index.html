@@ -11,7 +11,6 @@
     <header class="borde">
       <h1>Webshop</h1>
       <nav>
-        <button id="btnCatalogo" class="borde">Catalogo</button>
         <button id="btnCarrito" class="borde">Carrito</button>
       </nav>
     </header>
@@ -19,14 +18,10 @@
       <h2>Catalogo</h2>
       <div class="borde" id="cajaCatalogo"></div>
     </main>
-    <div id="cajaCarrito" class="borde">
+    <div id="cajaCarrito" class="borde oculto">
       <h3>Carrito</h3>
-      <ul>
-        <li>producto</li>
-        <li>producto</li>
-        <li>producto</li>
-      </ul>
-      <h2>Total $ 999</h2>
+      <ul id="listaCarrito"></ul>
+      <h2 id="carritoTotal">Total $ 999</h2>
     </div>
 
     <script src="js/main.js"></script>

@@ -1,7 +1,11 @@
 const btnCarrito = document.getElementById("btnCarrito");
-const btnCatalogo = document.getElementById('btnCatalogo');
+
 const cajaCarrito = document.getElementById("cajaCarrito");
 const cajaCatalogo = document.getElementById("cajaCatalogo");
+const listaCarrito = document.getElementById('listaCarrito');
+const carritoTotal = document.getElementById('carritoTotal');
+const carritoProductos = [];
+const carritoPrecios = [];
 
 const productos = [
   {
@@ -25,19 +29,42 @@ btnCarrito.addEventListener("click", () => {
   cajaCarrito.classList.toggle("oculto");
 });
 
-function imprimirCatalogo(){
-    for (let i = 0; i < productos.length; i++) {
-        const producto = document.createElement('div')
-        producto.innerHTML = `
-        <div class="tarjetaProducto borde">
-              <h3>${productos[i].productName}</h3>
-              <div class="preImage borde"></div>
-              <h3>$5</h3>
-              <button>Añadir al Carrito</button>
-          </div>
-        `
-        cajaCatalogo.append(producto)
-    }
+function imprimirCarrito(){
+  for (let i = 0; i < carritoPrecios.length; i++) {
+    productoCarrito = document.createElement('li')
+    productoCarrito.textContent = carritoPrecios[i]
+    listaCarrito.append(productoCarrito)
+    
+    
+  }
 }
 
-btnCatalogo.addEventListener('click', imprimirCatalogo);
+
+function imprimirCatalogo() {
+  for (let i = 0; i < productos.length; i++) {
+    const producto = document.createElement("div");
+    const btn = document.createElement('button')
+    btn.textContent = 'añadir'
+    btn.addEventListener('click', ()=> {
+      console.log('carrito!!!')
+      carritoPrecios.push(productos[i].productPrice + productos[i].productName)
+      console.log(carritoPrecios)
+      imprimirCarrito()
+    })
+    
+    producto.classList = 'tarjetaProducto borde'
+    producto.innerHTML = `
+        <h3>${productos[i].productName}</h3>
+        <div class="preImage borde"></div>
+        <h3>$ ${productos[i].productPrice}</h3>
+        <h4> ${productos[i].productDescription}</h4>
+        
+        
+        `;
+    cajaCatalogo.append(producto);
+    producto.append(btn);
+  }
+  
+}
+
+imprimirCatalogo();

@@ -40,7 +40,7 @@ main {
 #cajaCarrito {
   width: 300px;
   min-height: 500px;
-  background-color: rgba(128, 128, 128, 0.479);
+  background-color: rgba(128, 128, 128, 0.925);
   position: absolute;
   top: 120px;
   right: 25px;
