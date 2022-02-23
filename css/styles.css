@@ -36,6 +36,21 @@ main {
   width: 250px;
   background-color: grey;
 }
+.productoCarrito {
+  margin: 10px;
+}
+.btnCarrito {
+  border: 1px solid black;
+  background: none;
+  color: black;
+  border-radius: 75%;
+  margin-left: 15px;
+  
+}
+.btnCarrito:hover {
+  background-color: rgb(196, 196, 196);
+  box-shadow: 1px 1px 2px red;
+}
 
 #cajaCarrito {
   width: 300px;

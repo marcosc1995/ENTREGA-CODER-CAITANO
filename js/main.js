@@ -23,6 +23,11 @@ const productos = [
     productPrice: 300,
     productDescription: "Descripcion de producto 3",
   },
+  {
+    productName: "producto 4",
+    productPrice: 400,
+    productDescription: "Descripcion de producto 4",
+  },
 ];
 
 btnCarrito.addEventListener("click", () => {
@@ -33,10 +38,12 @@ function imprimirCarrito() {
   listaCarrito.innerHTML = "";
   for (let i = 0; i < carritoPrecios.length; i++) {
     productoCarrito = document.createElement("li");
+    productoCarrito.classList= 'productoCarrito'
     productoCarrito.textContent = carritoPrecios[i].nombre;
     listaCarrito.append(productoCarrito);
     btnProducto = document.createElement("button");
-    btnProducto.textContent = "X";
+    btnProducto.textContent = "x";
+    btnProducto.classList = 'btnCarrito'
     btnProducto.addEventListener("click", () => {
       console.log("borrador de productos");
       carritoProductos -= carritoPrecios[i].precio;
@@ -47,7 +54,7 @@ function imprimirCarrito() {
     productoCarrito.append(btnProducto);
     
   }
-  carritoTotal.textContent = carritoProductos
+  carritoTotal.textContent = ` Total $ ${carritoProductos}`
 }
 
 function imprimirCatalogo() {
