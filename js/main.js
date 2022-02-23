@@ -4,7 +4,7 @@ const cajaCarrito = document.getElementById("cajaCarrito");
 const cajaCatalogo = document.getElementById("cajaCatalogo");
 const listaCarrito = document.getElementById("listaCarrito");
 const carritoTotal = document.getElementById("carritoTotal");
-const carritoProductos = [];
+let carritoProductos = 0;
 const carritoPrecios = [];
 
 const productos = [
@@ -30,21 +30,24 @@ btnCarrito.addEventListener("click", () => {
 });
 
 function imprimirCarrito() {
-  listaCarrito.innerHTML = '';
+  listaCarrito.innerHTML = "";
   for (let i = 0; i < carritoPrecios.length; i++) {
     productoCarrito = document.createElement("li");
     productoCarrito.textContent = carritoPrecios[i].nombre;
     listaCarrito.append(productoCarrito);
-    btnProducto = document.createElement('button')
-    btnProducto.textContent = 'X'
+    btnProducto = document.createElement("button");
+    btnProducto.textContent = "X";
+    btnProducto.addEventListener("click", () => {
+      console.log("borrador de productos");
+      carritoProductos -= carritoPrecios[i].precio;
+      carritoPrecios.splice(i, 1);
+
+      imprimirCarrito();
+    });
+    productoCarrito.append(btnProducto);
     
-    btnProducto.addEventListener('click', ()=>{
-      console.log('borrador de productos')
-      carritoPrecios.splice(i, 1)
-      imprimirCarrito()      
-    })
-    productoCarrito.append(btnProducto)
   }
+  carritoTotal.textContent = carritoProductos
 }
 
 function imprimirCatalogo() {
@@ -60,6 +63,8 @@ function imprimirCatalogo() {
         precio: productos[i].productPrice,
       });
       console.log(carritoPrecios);
+      //carritoProductos += carritoPrecios[i].precio;
+      carritoProductos += productos[i].productPrice
       imprimirCarrito();
     });
 
