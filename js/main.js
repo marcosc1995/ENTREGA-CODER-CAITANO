@@ -2,8 +2,8 @@ const btnCarrito = document.getElementById("btnCarrito");
 
 const cajaCarrito = document.getElementById("cajaCarrito");
 const cajaCatalogo = document.getElementById("cajaCatalogo");
-const listaCarrito = document.getElementById('listaCarrito');
-const carritoTotal = document.getElementById('carritoTotal');
+const listaCarrito = document.getElementById("listaCarrito");
+const carritoTotal = document.getElementById("carritoTotal");
 const carritoProductos = [];
 const carritoPrecios = [];
 
@@ -29,30 +29,39 @@ btnCarrito.addEventListener("click", () => {
   cajaCarrito.classList.toggle("oculto");
 });
 
-function imprimirCarrito(){
+function imprimirCarrito() {
+  listaCarrito.innerHTML = '';
   for (let i = 0; i < carritoPrecios.length; i++) {
-    productoCarrito = document.createElement('li')
-    productoCarrito.textContent = carritoPrecios[i]
-    listaCarrito.append(productoCarrito)
+    productoCarrito = document.createElement("li");
+    productoCarrito.textContent = carritoPrecios[i].nombre;
+    listaCarrito.append(productoCarrito);
+    btnProducto = document.createElement('button')
+    btnProducto.textContent = 'X'
     
-    
+    btnProducto.addEventListener('click', ()=>{
+      listaCarrito.removeChild(productoCarrito)
+    })
+    productoCarrito.append(btnProducto)
   }
 }
-
 
 function imprimirCatalogo() {
   for (let i = 0; i < productos.length; i++) {
     const producto = document.createElement("div");
-    const btn = document.createElement('button')
-    btn.textContent = 'añadir'
-    btn.addEventListener('click', ()=> {
-      console.log('carrito!!!')
-      carritoPrecios.push(productos[i].productPrice + productos[i].productName)
-      console.log(carritoPrecios)
-      imprimirCarrito()
-    })
-    
-    producto.classList = 'tarjetaProducto borde'
+    const btn = document.createElement("button");
+    btn.textContent = "añadir";
+    btn.addEventListener("click", () => {
+      console.log("carrito!!!");
+      //carritoPrecios.push(productos[i].productPrice + productos[i].productName)
+      carritoPrecios.push({
+        nombre: productos[i].productName,
+        precio: productos[i].productPrice,
+      });
+      console.log(carritoPrecios);
+      imprimirCarrito();
+    });
+
+    producto.classList = "tarjetaProducto borde";
     producto.innerHTML = `
         <h3>${productos[i].productName}</h3>
         <div class="preImage borde"></div>
@@ -64,7 +73,6 @@ function imprimirCatalogo() {
     cajaCatalogo.append(producto);
     producto.append(btn);
   }
-  
 }
 
 imprimirCatalogo();
