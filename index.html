@@ -9,12 +9,23 @@
   </head>
   <body>
     <header class="borde">
-      <h1>Webshop</h1>
+      <h1>Webshop Segunda Entrega</h1>
+      <button id="btnAdmin">Admin</button>
       <nav>
         <h4 id="totalNav">Total $ 0</h4>
         <button id="btnCarrito" class="borde">Carrito</button>
       </nav>
     </header>
+    <div id="adminBox" class="borde">
+      <h2>Añadir productos</h2>
+      <form id="formAdd">
+        <input id="formTitle" type="text" placeholder="Nombre del Producto" />
+        <input id="formPrice" type="number" placeholder="Precio" />
+        <input id="formTag" type="text" placeholder="Categoría" />
+        <button id="btnAddProduct" type="submit">Añadir producto</button>
+      </form>
+      
+    </div>
     <main class="borde">
       <h2>Catalogo</h2>
       <div class="borde" id="cajaCatalogo"></div>
@@ -24,7 +35,8 @@
       <ul id="listaCarrito"></ul>
       <h2 id="carritoTotal">Total $ 0</h2>
     </div>
+    <form id="formAdd"></form>
 
-    <script src="js/main.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

@@ -6,7 +6,8 @@ const listaCarrito = document.getElementById("listaCarrito");
 const carritoTotal = document.getElementById("carritoTotal");
 const totalNav = document.getElementById("totalNav")
 let carritoProductos = 0;
-const carritoPrecios = [];
+// localStorage.setItem('produc', '[]')
+const carritoPrecios = JSON.parse(localStorage.getItem('produc'));
 
 const productos = [
   {
@@ -49,7 +50,7 @@ function imprimirCarrito() {
       console.log("borrador de productos");
       carritoProductos -= carritoPrecios[i].precio;
       carritoPrecios.splice(i, 1);
-
+      
       imprimirCarrito();
     });
     productoCarrito.append(btnProducto);
@@ -57,6 +58,7 @@ function imprimirCarrito() {
   }
   carritoTotal.textContent = ` Total $ ${carritoProductos}`;
   totalNav.textContent = ` Total $ ${carritoProductos}`
+  localStorage.setItem('produc', JSON.stringify(carritoPrecios))
 }
 
 function imprimirCatalogo() {
@@ -92,3 +94,8 @@ function imprimirCatalogo() {
 }
 
 imprimirCatalogo();
+
+
+// AGREGAR BUSCADOR 
+// BUSCADOR DE CATEGORIAS
+//usar local stonage
