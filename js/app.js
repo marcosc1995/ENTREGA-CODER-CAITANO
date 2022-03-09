@@ -13,36 +13,10 @@ const allProducts = document.getElementById("allProducts");
 const btnAdmin = document.getElementById("btnAdmin");
 const adminBox = document.getElementById("adminBox");
 const productosAdmin = document.getElementById("productosAdmin");
-//CATALOGO
 const cajaCatalogo = document.getElementById("cajaCatalogo");
-
-// Array para guardar los productos de todo el catalogo
+let carritoPrecios = 0;
+let carritoProductos = [];
 let productos = [];
-let productosCarrito = [];
-
-let test = [1, 2, 10, 55, 156];
-
-function checkLocal(arr, storage) {
-  if (localStorage.getItem(storage)) {
-    arr = JSON.parse(localStorage.getItem(storage));
-  } else {
-    localStorage.setItem(storage, JSON.stringify(arr));
-  }
-}
-function traerLocal() {
-  productos = JSON.parse(localStorage.getItem("productos"));
-}
-function saveLocal(arr, storage) {
-  localStorage.setItem(storage, JSON.stringify(arr));
-}
-
-// traerLocal(productos, 'productos')
-
-checkLocal(productos, "productos");
-traerLocal();
-imprimirCard(productos, cajaCatalogo, "productos");
-imprimirCardAdmin(productos, productosAdmin, "productos");
-//imprimirCardAdmin(productos, allProducts )
 
 // Funcion constructora de productos
 class Producto {
@@ -70,44 +44,45 @@ class Producto {
   }
 }
 
-btnCarrito.addEventListener("click", () => {
-  cajaCarrito.classList.toggle("oculto");
-});
-btnAdmin.addEventListener("click", () => {
-  adminBox.classList.toggle("oculto");
-});
-
-formulario.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let title = document.getElementById("formTitle").value;
-  let price = document.getElementById("formPrice").value;
-  let tag = document.getElementById("formTag").value;
-  let img = document.getElementById("formImg").value;
-
-  const producto = new Producto(title, price, tag, img);
-
-  producto.add();
-  imprimirCard(productos, cajaCatalogo, "productos");
-  imprimirCardAdmin(productos, productosAdmin, "productos");
-
-  console.log(producto);
-});
-
-//traerLocal();
-
-//console.log(console.log(JSON.parse(localStorage.productos)[0].title))
-
+function checkLocal(arr, storage) {
+  if (localStorage.getItem(storage)) {
+    arr = JSON.parse(localStorage.getItem(storage));
+  } else {
+    localStorage.setItem(storage, JSON.stringify(arr));
+  }
+}
+function traerLocal() {
+  productos = JSON.parse(localStorage.getItem("productos"));
+}
+function saveLocal(arr, storage) {
+  localStorage.setItem(storage, JSON.stringify(arr));
+}
 function imprimirCard(src, box, storage) {
   box.innerHTML = "";
   for (let i = 0; i < src.length; i++) {
     const producto = document.createElement("div");
     producto.classList = "tarjetaProducto borde";
-    producto.innerHTML = `
-        <h3>${src[i].title}</h3>
-        <div class="preImage borde"></div>
+    const btn = document.createElement("button");
+    btn.textContent = "añadir";
+    btn.addEventListener("click", () => {
+      console.log(`${src[i].title} añadido al carrito`);
+      carritoProductos.push({
+        title: productos[i].title,
+        price: productos[i].price,
+      });
+      carritoPrecios += parseInt(productos[i].price);
+      imprimirCarrito();
+    });
+    const img = document.createElement("div");
+    img.classList = "preImage";
+    img.style.backgroundImage = `url(${src[i].img})`;
+    const infoProducto = document.createElement("div");
+    infoProducto.innerHTML = `
+        <h3>${src[i].title}</h3>        
         <h3>$ ${src[i].price}</h3>
         <h4> ${src[i].category}</h4>
-        `;
+    `;
+    producto.append(img, infoProducto, btn);
     box.append(producto);
     btnProducto = document.createElement("button");
     btnProducto.textContent = "x";
@@ -137,10 +112,10 @@ function imprimirCardAdmin(src, box, storage) {
             <label>Nombre</label><input value="${src[i].title}" id="title_${src[i].title}" type="text" />
           </div>
           <div>
-            <label>Precio</label><input value="${src[i].price}" id="price_${src[i].title}" type="text" />
+            <label>Precio</label><input value="${src[i].price}" id="price_${src[i].title}" type="number" />
           </div>
           <div>
-            <label>Stock Actual</label><input value="${src[i].stock}" id="stock_${src[i].title}" type="text" />
+            <label>Stock Actual</label><input value="${src[i].stock}" id="stock_${src[i].title}" type="number" />
           </div>
           <div>
             <label>Imagen</label><input value="${src[i].img}" id="img_${src[i].title}" placeholder="URL" type="url" />
@@ -148,21 +123,21 @@ function imprimirCardAdmin(src, box, storage) {
     `;
     const btnActualizar = document.createElement("button");
     btnActualizar.textContent = "Actualizar";
-    btnActualizar.type = 'submit'
+    btnActualizar.type = "submit";
     btnActualizar.addEventListener("click", () => {
-      
       let inputTitle = document.getElementById(`title_${src[i].title}`).value;
       let inputPrice = document.getElementById(`price_${src[i].title}`).value;
       let inputStock = document.getElementById(`stock_${src[i].title}`).value;
       let inputImg = document.getElementById(`img_${src[i].title}`).value;
 
-      src[i].title = inputTitle
-      src[i].price = inputPrice
-      src[i].stock = inputStock
-      src[i].img = inputImg
+      src[i].title = inputTitle;
+      src[i].price = inputPrice;
+      src[i].stock = inputStock;
+      src[i].img = inputImg;
 
       imprimirCardAdmin(src, box, storage);
       imprimirCard(src, cajaCatalogo, storage);
+      saveLocal(src, storage);
 
       console.log(inputTitle);
     });
@@ -171,7 +146,7 @@ function imprimirCardAdmin(src, box, storage) {
     img.style.backgroundImage = `url(${src[i].img})`;
     producto.classList = "tarjetaProducto borde adminProduct";
     producto.append(img, title, form);
-    form.append(btnActualizar)
+    form.append(btnActualizar);
     box.append(producto);
     btnDelete = document.createElement("button");
     btnDelete.textContent = "x";
@@ -186,3 +161,53 @@ function imprimirCardAdmin(src, box, storage) {
     producto.append(btnDelete);
   }
 }
+function imprimirCarrito() {
+  listaCarrito.innerHTML = "";
+  for (let i = 0; i < carritoProductos.length; i++) {
+    productoCarrito = document.createElement("li");
+    productoCarrito.classList = "productoCarrito";
+    productoCarrito.textContent = carritoProductos[i].title;
+    listaCarrito.append(productoCarrito);
+    btnProducto = document.createElement("button");
+    btnProducto.textContent = "x";
+    btnProducto.classList = "btnCarrito";
+    btnProducto.addEventListener("click", () => {
+      console.log("borrador de productos");
+      carritoPrecios -= carritoProductos[i].price;
+      carritoProductos.splice(i, 1);
+
+      imprimirCarrito();
+    });
+    productoCarrito.append(btnProducto);
+  }
+  carritoTotal.textContent = ` Total $ ${carritoPrecios}`;
+  totalNav.textContent = ` Total $ ${carritoPrecios}`;
+}
+
+checkLocal(productos, "productos");
+traerLocal();
+imprimirCard(productos, cajaCatalogo, "productos");
+imprimirCardAdmin(productos, productosAdmin, "productos");
+
+btnCarrito.addEventListener("click", () => {
+  cajaCarrito.classList.toggle("oculto");
+});
+btnAdmin.addEventListener("click", () => {
+  adminBox.classList.toggle("oculto");
+});
+
+formulario.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let title = document.getElementById("formTitle").value;
+  let price = document.getElementById("formPrice").value;
+  let tag = document.getElementById("formTag").value;
+  let img = document.getElementById("formImg").value;
+
+  const producto = new Producto(title, price, tag, img);
+
+  producto.add();
+  imprimirCard(productos, cajaCatalogo, "productos");
+  imprimirCardAdmin(productos, productosAdmin, "productos");
+
+  console.log(producto);
+});

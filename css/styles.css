@@ -35,8 +35,9 @@ main {
 
 .tarjetaProducto {
   position: relative;
-  width: fit-content;
+  /* width: fit-content; */
   height: fit-content;
+  justify-content: space-between;
 }
 .formProducto {
   display: flex;
