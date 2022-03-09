@@ -53,6 +53,7 @@ function checkLocal(arr, storage) {
 }
 function traerLocal() {
   productos = JSON.parse(localStorage.getItem("productos"));
+ // carritoProductos = JSON.parse(localStorage.getItem("carrito"))
 }
 function saveLocal(arr, storage) {
   localStorage.setItem(storage, JSON.stringify(arr));
@@ -71,6 +72,7 @@ function imprimirCard(src, box, storage) {
         price: productos[i].price,
       });
       carritoPrecios += parseInt(productos[i].price);
+      saveLocal(carritoProductos, 'carrito')
       imprimirCarrito();
     });
     const img = document.createElement("div");
@@ -80,7 +82,7 @@ function imprimirCard(src, box, storage) {
     infoProducto.innerHTML = `
         <h3>${src[i].title}</h3>        
         <h3>$ ${src[i].price}</h3>
-        <h4> ${src[i].category}</h4>
+        <h4>Stock ${src[i].stock}</h4>
     `;
     producto.append(img, infoProducto, btn);
     box.append(producto);
@@ -188,6 +190,7 @@ checkLocal(productos, "productos");
 traerLocal();
 imprimirCard(productos, cajaCatalogo, "productos");
 imprimirCardAdmin(productos, productosAdmin, "productos");
+imprimirCarrito()
 
 btnCarrito.addEventListener("click", () => {
   cajaCarrito.classList.toggle("oculto");
