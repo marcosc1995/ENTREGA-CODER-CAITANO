@@ -45,12 +45,15 @@ class Producto {
 }
 
 function checkLocal(arr, storage) {
-  if (localStorage.getItem(storage)) {
-    arr = JSON.parse(localStorage.getItem(storage));
-  } else {
-    localStorage.setItem(storage, JSON.stringify(arr));
-  }
+  localStorage.getItem(storage) ? arr = JSON.parse(localStorage.getItem(storage)) : localStorage.setItem(storage, JSON.stringify(arr))  
 }
+// function checkLocal(arr, storage) {
+//   if (localStorage.getItem(storage)) {
+//     arr = JSON.parse(localStorage.getItem(storage));
+//   } else {
+//     localStorage.setItem(storage, JSON.stringify(arr));
+//   }
+// }
 function traerLocal() {
   productos = JSON.parse(localStorage.getItem("productos"));
  // carritoProductos = JSON.parse(localStorage.getItem("carrito"))
@@ -198,7 +201,6 @@ btnCarrito.addEventListener("click", () => {
 btnAdmin.addEventListener("click", () => {
   adminBox.classList.toggle("oculto");
 });
-
 formulario.addEventListener("submit", (e) => {
   e.preventDefault();
   let title = document.getElementById("formTitle").value;
