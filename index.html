@@ -4,20 +4,36 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <title>WebShop</title>
   </head>
   <body>
     <header class="borde">
-      <h1>Webshop Segunda Entrega</h1>
-      <button id="btnAdmin">Admin</button>
+      <h1>Webshop</h1>
+      <button id="btnAdmin">
+        <span style="font-size: 50px;" class="material-icons">
+          manage_accounts
+          </span>
+      </button>
       <nav>
         <h4 id="totalNav">Total $ 0</h4>
-        <button id="btnCarrito" class="borde">Carrito</button>
+        <button id="btnCarrito" class="borde">
+          <span class="material-icons"> shopping_cart </span>
+        </button>
       </nav>
     </header>
     <div id="adminBox" class="borde oculto">
-      <div class="borde">
+      <div id="formBox" class="borde">
         <h2>Añadir productos</h2>
         <form id="formAdd">
           <input id="formTitle" type="text" placeholder="Nombre del Producto" />

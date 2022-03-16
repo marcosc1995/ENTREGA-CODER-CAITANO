@@ -69,7 +69,11 @@ function imprimirCard(src, box, storage) {
     const producto = document.createElement("div");
     producto.classList = "tarjetaProducto borde";
     const btn = document.createElement("button");
-    btn.textContent = "añadir";
+    //btn.textContent = "añadir";
+    btn.innerHTML = `<span class="material-icons">
+    add_shopping_cart
+    </span>`;
+    btn.classList = "btnAddProducto";
     btn.addEventListener("click", () => {
       console.log(`${src[i].title} añadido al carrito`);
       Swal.fire(`${src[i].title} añadido al carrito`);
@@ -130,7 +134,9 @@ function imprimirCardAdmin(src, box, storage) {
           </div>
     `;
     const btnActualizar = document.createElement("button");
-    btnActualizar.textContent = "Actualizar";
+    btnActualizar.innerHTML = `<span class="material-icons">
+    cached
+    </span>`;
     btnActualizar.type = "submit";
     btnActualizar.addEventListener("click", () => {
       let inputTitle = document.getElementById(`title_${src[i].title}`).value;
