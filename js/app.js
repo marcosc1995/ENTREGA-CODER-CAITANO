@@ -70,6 +70,7 @@ function imprimirCard(src, box, storage) {
     btn.textContent = "añadir";
     btn.addEventListener("click", () => {
       console.log(`${src[i].title} añadido al carrito`);
+      Swal.fire(`${src[i].title} añadido al carrito`)
       carritoProductos.push({
         title: productos[i].title,
         price: productos[i].price,
@@ -134,7 +135,6 @@ function imprimirCardAdmin(src, box, storage) {
       let inputPrice = document.getElementById(`price_${src[i].title}`).value;
       let inputStock = document.getElementById(`stock_${src[i].title}`).value;
       let inputImg = document.getElementById(`img_${src[i].title}`).value;
-
       src[i].title = inputTitle;
       src[i].price = inputPrice;
       src[i].stock = inputStock;
@@ -178,6 +178,7 @@ function imprimirCarrito() {
     btnProducto.classList = "btnCarrito";
     btnProducto.addEventListener("click", () => {
       console.log("borrador de productos");
+      Swal.fire('Producto borrado')
       carritoPrecios -= carritoProductos[i].price;
       carritoProductos.splice(i, 1);
 
@@ -215,4 +216,5 @@ formulario.addEventListener("submit", (e) => {
   imprimirCardAdmin(productos, productosAdmin, "productos");
 
   console.log(producto);
+  Swal.fire('Producto Creado')
 });
