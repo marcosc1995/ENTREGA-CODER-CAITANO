@@ -45,7 +45,9 @@ class Producto {
 }
 
 function checkLocal(arr, storage) {
-  localStorage.getItem(storage) ? arr = JSON.parse(localStorage.getItem(storage)) : localStorage.setItem(storage, JSON.stringify(arr))  
+  localStorage.getItem(storage)
+    ? (arr = JSON.parse(localStorage.getItem(storage)))
+    : localStorage.setItem(storage, JSON.stringify(arr));
 }
 // function checkLocal(arr, storage) {
 //   if (localStorage.getItem(storage)) {
@@ -56,7 +58,7 @@ function checkLocal(arr, storage) {
 // }
 function traerLocal() {
   productos = JSON.parse(localStorage.getItem("productos"));
- // carritoProductos = JSON.parse(localStorage.getItem("carrito"))
+  carritoProductos = JSON.parse(localStorage.getItem("carrito"));
 }
 function saveLocal(arr, storage) {
   localStorage.setItem(storage, JSON.stringify(arr));
@@ -70,13 +72,13 @@ function imprimirCard(src, box, storage) {
     btn.textContent = "añadir";
     btn.addEventListener("click", () => {
       console.log(`${src[i].title} añadido al carrito`);
-      Swal.fire(`${src[i].title} añadido al carrito`)
+      Swal.fire(`${src[i].title} añadido al carrito`);
       carritoProductos.push({
         title: productos[i].title,
         price: productos[i].price,
       });
       carritoPrecios += parseInt(productos[i].price);
-      saveLocal(carritoProductos, 'carrito')
+      saveLocal(carritoProductos, "carrito");
       imprimirCarrito();
     });
     const img = document.createElement("div");
@@ -178,23 +180,31 @@ function imprimirCarrito() {
     btnProducto.classList = "btnCarrito";
     btnProducto.addEventListener("click", () => {
       console.log("borrador de productos");
-      Swal.fire('Producto borrado')
+      Swal.fire("Producto borrado");
       carritoPrecios -= carritoProductos[i].price;
       carritoProductos.splice(i, 1);
 
       imprimirCarrito();
+      saveLocal(carritoProductos, "carrito");
     });
     productoCarrito.append(btnProducto);
   }
   carritoTotal.textContent = ` Total $ ${carritoPrecios}`;
   totalNav.textContent = ` Total $ ${carritoPrecios}`;
 }
-
-checkLocal(productos, "productos");
+//let tott = 0
+function totalPrice() {
+  for (let i = 0; i < carritoProductos.length; i++) {
+    carritoPrecios += parseInt(carritoProductos[i].price);
+  }
+}
 traerLocal();
+totalPrice();
+checkLocal(productos, "productos");
+checkLocal(carritoProductos, "carrito");
 imprimirCard(productos, cajaCatalogo, "productos");
 imprimirCardAdmin(productos, productosAdmin, "productos");
-imprimirCarrito()
+imprimirCarrito();
 
 btnCarrito.addEventListener("click", () => {
   cajaCarrito.classList.toggle("oculto");
@@ -216,5 +226,5 @@ formulario.addEventListener("submit", (e) => {
   imprimirCardAdmin(productos, productosAdmin, "productos");
 
   console.log(producto);
-  Swal.fire('Producto Creado')
+  Swal.fire("Producto Creado");
 });
