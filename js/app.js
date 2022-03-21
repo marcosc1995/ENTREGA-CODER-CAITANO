@@ -1,7 +1,7 @@
 /**
- * Seleccion de elementos del DOM
+ * SELECCION DE LOS ELEMENTOS DEL DOM
  */
-//CARRITO
+
 const btnCarrito = document.getElementById("btnCarrito");
 const cajaCarrito = document.getElementById("cajaCarrito");
 const listaCarrito = document.getElementById("listaCarrito");
@@ -14,11 +14,18 @@ const btnAdmin = document.getElementById("btnAdmin");
 const adminBox = document.getElementById("adminBox");
 const productosAdmin = document.getElementById("productosAdmin");
 const cajaCatalogo = document.getElementById("cajaCatalogo");
+/**
+ * VARIABLES PRINCIPALES
+ */
 let carritoPrecios = 0;
 let carritoProductos = [];
 let productos = [];
+let cotizaciones;
 
-// Funcion constructora de productos
+/**
+ * FUNCION CONSTRUCTORA DE PRODUCTOS
+ */
+
 class Producto {
   constructor(title, price, category, img) {
     this.title = title;
@@ -44,6 +51,41 @@ class Producto {
   }
 }
 
+/**
+ * PRODUCTOS DE MUESTRA
+ */
+const muestra1 = new Producto(
+  "MSI GeForce RTX 3080 Ti",
+  65900,
+  "Tarjetas de video",
+  "https://thotcomputacion.com.uy/wp-content/uploads/2021/06/3080TI25252520MSI93374_d64988c2fe174580b12745ae431dc6a6.jpg"
+);
+const muestra2 = new Producto(
+  "Cooler Master MWE Gold 750W",
+  12300,
+  "Fuentes de alimentacion",
+  "https://thotcomputacion.com.uy/wp-content/uploads/2021/08/750g82997_8645c18ede514e14a50b50110f197c77.jpg"
+);
+const muestra3 = new Producto(
+  "Cooler Master Box Lite 3.1 TG",
+  11540,
+  "Gabinetes",
+  "https://thotcomputacion.com.uy/wp-content/uploads/2019/01/masterbox-lite-31-tg-380x380-1-hover.png"
+);
+muestra1.add();
+muestra2.add();
+muestra3.add();
+
+/**
+ * FIN DE PRODUCTOS DE MUESTRA
+ */
+
+
+//---------------------------------------------------------------------------------------------//
+
+/**
+ * DECLARACION DE FUNCIONES PRINCIPALES
+ */
 function checkLocal(arr, storage) {
   localStorage.getItem(storage)
     ? (arr = JSON.parse(localStorage.getItem(storage)))
@@ -65,6 +107,7 @@ function saveLocal(arr, storage) {
 }
 function imprimirCard(src, box, storage) {
   box.innerHTML = "";
+
   for (let i = 0; i < src.length; i++) {
     const producto = document.createElement("div");
     producto.classList = "tarjetaProducto borde";
@@ -91,7 +134,9 @@ function imprimirCard(src, box, storage) {
     const infoProducto = document.createElement("div");
     infoProducto.innerHTML = `
         <h3>${src[i].title}</h3>        
-        <h3>$ ${src[i].price}</h3>
+        <h3>$ ${src[i].price} // U$D ${parseInt(
+      src[i].price / cotizaciones
+    )}</h3>
         <h4>Stock ${src[i].stock}</h4>
     `;
     producto.append(img, infoProducto, btn);
@@ -204,6 +249,20 @@ function totalPrice() {
     carritoPrecios += parseInt(carritoProductos[i].price);
   }
 }
+/**
+ * FUNCION PARA CONVERTIR DE PESOS URUAGUAYOS A DOLARES
+ * DESDE VALORES OBTENIDOS DE UNA API
+ */
+function convert() {
+  fetch("https://cotizaciones-brou.herokuapp.com/api/currency/latest")
+    .then((respose) => respose.json())
+    .then((data) => {
+      cotizaciones = data.rates.USD.buy;
+      imprimirCard(productos, cajaCatalogo, "productos");
+    });
+}
+
+convert();
 traerLocal();
 totalPrice();
 checkLocal(productos, "productos");
@@ -212,6 +271,9 @@ imprimirCard(productos, cajaCatalogo, "productos");
 imprimirCardAdmin(productos, productosAdmin, "productos");
 imprimirCarrito();
 
+/**
+ * BOTONES DE MENUS Y ADMINS
+ */
 btnCarrito.addEventListener("click", () => {
   cajaCarrito.classList.toggle("oculto");
 });
