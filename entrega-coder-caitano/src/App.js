@@ -1,16 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
     <div>
       <header>
         <nav>
-          <h1>Shop</h1>
+          <h1>E-ShopTech</h1>
           <ul>
-            <li>elemento 1</li>
-            <li>elemento 2</li>
-            <li>elemento 3</li>
+            <li>
+              <a href="">elemento 1</a>
+            </li>
+            <li>
+              <a href="">elemento 2</a>
+            </li>
+            <li>
+              <a href="">elemento 3</a>
+            </li>
           </ul>
         </nav>
       </header>
