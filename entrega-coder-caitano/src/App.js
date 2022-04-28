@@ -9,13 +9,13 @@ function App() {
           <h1>E-ShopTech</h1>
           <ul>
             <li>
-              <a href="">elemento 1</a>
+              <a href="">Categorias</a>
             </li>
             <li>
-              <a href="">elemento 2</a>
+              <a href="">Sobre Nosotros</a>
             </li>
             <li>
-              <a href="">elemento 3</a>
+              <a href="">Contacto</a>
             </li>
           </ul>
         </nav>
