@@ -10,6 +10,16 @@ nav {
   padding-left: 20px;
 }
 
+nav button {
+  border-radius: 15px;
+  height: 40px;
+  margin-top: 30px;
+}
+
+nav button img {
+  height: 30px;
+}
+
 nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -29,5 +39,36 @@ nav ul li {
 nav ul li a {
   text-decoration: none;
   color: white;
+}
+
+main {
+  background-color: #554242;
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.product-card {
+  border: 1px solid red;
+  background-color: #dbdbdb;
+  margin: 15px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.product-card h2 {
+  text-align: center;
+}
+
+.product-card img {
+  height: 300px;
+  border: 1px solid black;
+}
+
+.product-card button {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 5px;
 }
 /*# sourceMappingURL=App.css.map */
