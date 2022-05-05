@@ -1,3 +1,7 @@
+import CartWidget from "./CartWidget";
+
+
+
 const NavBar = (props) => {
   return (
     <nav>
@@ -10,9 +14,7 @@ const NavBar = (props) => {
           <a href="">Sobre Nosotros</a>
         </li>
       </ul>
-      <button>
-        <img src={props.img} alt="" />
-      </button>
+      <CartWidget></CartWidget>
     </nav>
   );
 };
