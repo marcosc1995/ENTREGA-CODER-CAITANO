@@ -1,9 +1,9 @@
 import imgChart from "../img/carrito-de-compras.png";
 
-const CartWidget = () => {
+const CartWidget = (props) => {
   return (
     <button>
-      <img src={imgChart} alt="" />0
+      <img src={imgChart} alt="" />{props.total}
     </button>
   );
 };

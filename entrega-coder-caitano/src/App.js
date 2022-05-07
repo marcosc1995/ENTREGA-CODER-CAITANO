@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <header>
-        <NavBar img={imgChart}></NavBar>
+        <NavBar totalCart='66'></NavBar>
       </header>
       <main>
         <ItemListContainer></ItemListContainer>

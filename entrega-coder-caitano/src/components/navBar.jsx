@@ -14,7 +14,7 @@ const NavBar = (props) => {
           <a href="">Sobre Nosotros</a>
         </li>
       </ul>
-      <CartWidget></CartWidget>
+      <CartWidget total={props.totalCart}></CartWidget>
     </nav>
   );
 };
