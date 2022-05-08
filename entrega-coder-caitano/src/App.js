@@ -12,7 +12,7 @@ function App() {
       <header>
         <NavBar totalCart='66'></NavBar>
       </header>
-      <main>
+      <main className="bg-secondary">
         <ItemListContainer></ItemListContainer>
         
         
