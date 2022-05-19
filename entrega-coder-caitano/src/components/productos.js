@@ -2,6 +2,7 @@ export const productos = [
   {
     name: "Notebook HP 15",
     id: 1,
+    category: 'Informatica',
     price: 699,
     stock: 9,
     new: true,
@@ -11,6 +12,7 @@ export const productos = [
   {
     name: "Xiaomi Redmi 9T",
     id: 2,
+    category: 'Celulares',
     price: 294,
     stock: 9,
     new: false,
@@ -20,6 +22,7 @@ export const productos = [
   {
     name: "Gigabyte Geforce Rtx 3080",
     id: 3,
+    category: 'Informatica',
     price: 3700,
     stock: 9,
     new: true,
@@ -29,6 +32,7 @@ export const productos = [
   {
     name: "Teclado Logitech Inalambrico K400+",
     id: 4,
+    category: 'Informatica',
     price: 39,
     stock: 9,
     new: true,
@@ -38,6 +42,7 @@ export const productos = [
   {
     name: "Auricular Gamer Pc Ps4 Xbox Micrófono Trust Gxt414",
     id: 5,
+    category: 'Audio',
     price: 79,
     stock: 9,
     new: false,

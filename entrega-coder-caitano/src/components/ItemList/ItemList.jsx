@@ -6,12 +6,10 @@ const ItemList = ({ items }) => {
     <div className="d-flex  justify-content-evenly flex-wrap">
       {items.map((value) => (
         <div key={value.id}>
+          <Item data={value}></Item>
+
           <Link to={`/details/${value.id}`}>
-            <Item              
-              title={value.name}
-              price={value.price}
-              img={value.img}
-            ></Item>
+            <div>Ver detalles</div>
           </Link>
         </div>
       ))}
