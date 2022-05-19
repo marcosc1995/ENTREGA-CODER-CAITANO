@@ -1,4 +1,4 @@
-import imgChart from "../img/carrito-de-compras.png";
+import imgChart from "./carrito-de-compras.png";
 
 const CartWidget = (props) => {
   return (

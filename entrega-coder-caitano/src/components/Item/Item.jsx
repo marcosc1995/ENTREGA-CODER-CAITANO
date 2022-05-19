@@ -1,6 +1,7 @@
-import ItemCount from "./ItemCount";
-import ItemDetailContainer from "./ItemDetailContainer";
+import ItemCount from "../ItemCount/ItemCount";
+import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer";
 import { useEffect, useState } from "react";
+import './Item.css'
 
 const Item = (props) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -12,10 +13,10 @@ const Item = (props) => {
   // }
 
   return (
-    <div onClick={show} className="w-25 bg-white m-1 d-flex">
+    <div onClick={show}  className="test-card  bg-white m-1 d-flex">
       <div
         
-        className="d-flex flex-column justify-content-between"
+        className="d-flex flex-column  justify-content-between"
       >
         <img className="img-fluid card-img-top" src={props.img} />
         <div>
