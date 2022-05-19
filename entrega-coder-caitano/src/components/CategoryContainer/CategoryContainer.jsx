@@ -20,7 +20,7 @@ const CategoryContainer = ()=> {
         data.then((data) => {
           //console.log(data)
           // PROBLEMA 1 NO PUEDO HACER QUE FUNCIONE EL FILTRADO DE PRODUCTOS 
-          let result = data.filter(x => x.category == productCategory)
+          let result = data.filter(x => x.category.toLowerCase() == productCategory)
         //   console.log(result)
           setItems(result);
         });
@@ -28,7 +28,7 @@ const CategoryContainer = ()=> {
     });
     return (
         <div>
-            <h1>{productCategory}</h1>
+            <ItemList items={items}></ItemList>
         </div>
     )
 
