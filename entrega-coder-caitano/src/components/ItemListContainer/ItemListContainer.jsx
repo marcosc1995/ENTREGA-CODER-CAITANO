@@ -1,21 +1,32 @@
 import { useEffect, useState } from "react";
 import ItemList from "../ItemList/ItemList";
 import { productos } from "../productos";
-import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer";
+//import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer";
+
+//FIREBSE 
+
+import { collection, query, getDocs, doc } from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      const data = new Promise((resolve, reject) => {
-        resolve(productos);
-      });
-      data.then((data) => {
-        setItems(data);
-      });
-    },2000);
-  });
+  
+  useEffect(()=>{
+    setItems(productos)
+  },[])
+  // useEffect(() => {
+  //   const getItems = async() => {
+  //     const q = query(collection(db, 'productos'));
+  //     const products = [];
+  //     const querySnapshot = await getDocs(q);
+  //     querySnapshot.forEach((product)=> {
+        
+  //       products.push({...product.data(), id: product.id})
+  //     })
+  //     setItems(products)
+  //   };
+  //   getItems()
+  // }, []);
 
   return (
     <div className="d-flex">

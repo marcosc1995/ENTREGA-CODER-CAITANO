@@ -1,7 +1,10 @@
 import CartWidget from "../CartWidget/CartWidget";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../CartContext/CartContext";
 
 const NavBar = (props) => {
+  const[items, setItems] = useContext(CartContext)
   return (
     <nav className="navbar">
       <Link className="navbar-brand" to="/">
@@ -18,7 +21,7 @@ const NavBar = (props) => {
           Audio
         </Link>
       </ul>
-      <CartWidget total={props.totalCart}></CartWidget>
+      <CartWidget total={items}></CartWidget>
     </nav>
   );
 };

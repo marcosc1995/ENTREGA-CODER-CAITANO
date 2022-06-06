@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import ItemDetailContainer from "../../components/ItemDetailContainer/ItemDetailContainer";
-import { useParams} from 'react-router'
+
 
 const Details = ()=> {
     

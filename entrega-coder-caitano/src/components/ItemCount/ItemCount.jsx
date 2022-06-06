@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { CartContext } from "../CartContext/CartContext";
 
-const ItemCount = ({ stock, initial }) => {
-  const [count, setCount] = useState(initial);
+const ItemCount = ({stock, initial}) => {
+  
   const [totalStock, setTotalStock] = useState(stock);
+  const [count, setCount] = useState(initial);
+  
+  const[items, setItems] = useContext(CartContext)
 
   const add = () => {
     if (count < totalStock) {
       setCount(count + 1);
     } else {
-      console.log("No puedorrrr");
+      console.log("No puedo");
     }
   };
 
@@ -16,14 +21,22 @@ const ItemCount = ({ stock, initial }) => {
     if (count > 0) {
       setCount(count - 1);
     } else {
-      console.log("Tampoco puedoorrrr");
+      console.log("Tampoco puedo");
     }
   };
 
   const updateStock = () => {
     setTotalStock(totalStock - count);
     setCount(1)
+    console.log(items)
   };
+
+  const addToCart = ()=>{
+    const selectedProduct = items.push(stock)
+    setItems(selectedProduct)
+    console.log(items)
+
+  }
 
   //   useEffect(() => {
   //     setStock(() => stock - count);
